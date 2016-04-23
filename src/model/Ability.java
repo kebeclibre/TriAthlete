@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class Ability {
+public abstract class Ability {
 	private Ability able;
 	private Map<String,String> features;
 	//private Set allFeatures = new TreeSet();
@@ -38,4 +38,7 @@ public class Ability {
 		}
 	}
 	
+	public abstract void run();
+	public abstract void swim();
+	public abstract void cycle();
 }
