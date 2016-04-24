@@ -5,6 +5,14 @@ import java.util.Map;
 public class Person {
 	private Ability able;
 	private int heartRate;
+	private int redCound;
+	public int getRedCound() {
+		return redCound;
+	}
+
+	public void setRedCound(int redCound) {
+		this.redCound = redCound;
+	}
 	private Map features;
 	
 	public Person(Ability ab) {
