@@ -11,7 +11,7 @@ public abstract class Ability {//implements Cyclable,Runnable,Swimmable{
 	//private Set allFeatures = new TreeSet();
 	
 	public Ability() {
-		this.features.putAll(recursive());
+		//this.features.putAll(recursive());
 	}
 	
 	public void addFeatureMap(Map<String,Integer> features) {
@@ -22,21 +22,22 @@ public abstract class Ability {//implements Cyclable,Runnable,Swimmable{
 		this.features.put(str, value);
 	}
 	
-	private Map<String,Integer> recursive() {
-			Map<String,Integer> result= null;
+	public Map<String,Integer> getAllRecursive() {
+			Map<String,Integer> result = new TreeMap<String,Integer>();
 			if (null != able ) {
-				result = new TreeMap<String,Integer>();
-				Set<Entry<String,Integer>> lower = able.features.entrySet();
-				for (Entry entry : lower) {
+				
+				Set<Entry<String,Integer>> lower = able.getAllRecursive().entrySet();
+				for (Entry<String,Integer> entry : lower) {
 					result.put((String)entry.getKey(),(Integer)entry.getValue());
 				}
 			}
+			result.putAll(this.features);
 			return result;
 	}
 	
-	public Map getFeat() {
-		return features;
-	}
+	//public Map getFeat() {
+	//	return features;
+	//}
 	
 	public void addAbility(Ability ab) {
 		if (null != able ) {
@@ -47,15 +48,15 @@ public abstract class Ability {//implements Cyclable,Runnable,Swimmable{
 				this.able = ab;
 			}
 		}
-		this.updateAbilities();
+		//this.updateAbilities();
 		
 	}
 	
-	public void updateAbilities() {
-		//this.features = new TreeMap<String,Integer>();
-		this.features.putAll(recursive());
+	//public void updateAbilities() {
+	//	//this.features = new TreeMap<String,Integer>();
+	//	this.features.putAll(getAllRecursive());
 		
-	}
+	//}
 	
 	public void run() {
 		if (!(this instanceof Run)) {
@@ -80,5 +81,16 @@ public abstract class Ability {//implements Cyclable,Runnable,Swimmable{
 			able.cycle();
 			}
 		}
+	}
+	
+	public String toString() {
+		Set<Entry<String,Integer>> retour = getAllRecursive().entrySet();
+		StringBuffer sb = new StringBuffer();
+		for (Entry<String,Integer> entry : retour) {
+			sb.append(entry.getKey()+" : ");
+			sb.append(entry.getValue()+"\n");
+		}
+		
+		return sb.toString();
 	}
 }

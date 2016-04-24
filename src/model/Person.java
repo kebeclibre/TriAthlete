@@ -6,6 +6,14 @@ public class Person {
 	private Ability able;
 	private int heartRate;
 	private int redCound;
+	private Map features;
+	
+	public Person() {}
+	public Person(Ability ab) {
+		this.setAble(ab);
+		features = this.getFeat();
+	}
+	
 	public int getRedCound() {
 		return redCound;
 	}
@@ -13,15 +21,12 @@ public class Person {
 	public void setRedCound(int redCound) {
 		this.redCound = redCound;
 	}
-	private Map features;
 	
-	public Person(Ability ab) {
-		this.setAble(ab);
-		features = this.getFeat();
-	}
 	
-	private Map getFeat() {
-		return able.getFeat();
+
+	
+	public Map<String,Integer> getFeat() {
+		return able.getAllRecursive();
 	}
 	
 	public Ability getAble() {
