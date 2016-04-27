@@ -12,7 +12,7 @@ public class Cycle extends Ability{
 	
 	
 	
-	Cycle(int dist,int time,int climb) {
+	public Cycle(int dist,int time,int climb) {
 		super();
 		this.addFeatureMap(new TreeMap<String,Integer>());
 		this.addFeat(CyclingFeat.CYCLE_PREF_DIST.name(), dist);

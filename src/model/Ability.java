@@ -52,6 +52,32 @@ public abstract class Ability {//implements Cyclable,Runnable,Swimmable{
 		
 	}
 	
+	public Ability rmAbility(Ability ab) {
+		if (null != able) {
+			if (able.equals(ab)) {
+				able = able.able;
+				return ab;
+			} else { return able.rmAbility(ab); }
+		}
+		return null;
+	}
+	
+	public Ability rmAbility(String ab) {
+		if (null != able) {
+			if (able.getClass().getSimpleName().equals(ab)) {
+				Ability retour = able;
+				able = able.able;
+				return retour;
+			}else { return able.rmAbility(ab); }
+		}
+		return null;
+	}
+	
+	public Ability getAbility() {
+		return this.able;
+	}
+	
+	
 	//public void updateAbilities() {
 	//	//this.features = new TreeMap<String,Integer>();
 	//	this.features.putAll(getAllRecursive());

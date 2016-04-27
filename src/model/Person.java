@@ -42,5 +42,27 @@ public class Person {
 		this.heartRate = heartRate;
 	}
 	
+	public Ability rmAbility(Ability ab) {
+		if (null != able) {
+			if (able.equals(ab)) {
+				able = able.getAbility();
+				return ab;
+			} else { return able.rmAbility(ab); }
+		}
+		return null;
+	}
+	
+	public Ability rmAbility(String ab) {
+		if (null != able) {
+			if (able.getClass().getSimpleName().equals(ab)) {
+				Ability retour = able;
+				able = able.getAbility();
+				return retour;
+			} else { return able.rmAbility(ab);}
+		}
+		return null;
+	}
+	
+	
 	
 }
